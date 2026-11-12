@@ -52,10 +52,11 @@ async function llamar(ruta, extra = {}, { binario = false } = {}) {
 // ---------- motor local ----------
 const sha = (buf) => crypto.createHash('sha256').update(buf).digest('hex');
 
-async function prepararMotor(skill, ficheros) {
+async function prepararMotor(skill, ficheros, prefijo = '') {
   const dir = path.join(MOTOR, skill);
   const estilos = path.join(ESTILOS, skill);
   fs.mkdirSync(estilos, { recursive: true });
+  if (!ficheros.length) return { dir, estilos, nuevos: 0 }; // puerta de entrada: nada que descargar ni limpiar
   const vigentes = new Set(ficheros.map((f) => f.ruta));
   let nuevos = 0;
   for (const f of ficheros) {
@@ -74,7 +75,7 @@ async function prepararMotor(skill, ficheros) {
     for (const e of fs.readdirSync(d, { withFileTypes: true })) {
       const rel = base ? `${base}/${e.name}` : e.name;
       if (e.isDirectory()) barrer(path.join(d, e.name), rel);
-      else if (!vigentes.has(rel)) sobrantes.push(path.join(d, e.name));
+      else if (!vigentes.has(rel) && (!prefijo || rel.startsWith(prefijo + '/'))) sobrantes.push(path.join(d, e.name));
     }
   })(dir);
   sobrantes.forEach((s) => fs.rmSync(s, { force: true }));
@@ -90,13 +91,13 @@ const TOOLS = [
   },
   {
     name: 'visualpro_abrir',
-    description: 'Abre una skill de Visual PRO: devuelve sus instrucciones completas (protegidas, solo con licencia) y deja listo el motor en este equipo. Llámala SIEMPRE al empezar una tarea de Visual PRO.',
-    inputSchema: { type: 'object', properties: { skill: { type: 'string', description: 'reels-pro | editor | videos-explicativos | explicativos-3d' } }, required: ['skill'] },
+    description: 'Abre una skill de Visual PRO: devuelve sus instrucciones (protegidas, solo con licencia) y deja listo el motor en este equipo. Llámala SIEMPRE al empezar una tarea de Visual PRO. La primera vez, sin módulo, devuelve la puerta de entrada que dice qué módulo abrir.',
+    inputSchema: { type: 'object', properties: { skill: { type: 'string', description: 'visual-pro' }, modulo: { type: 'string', description: 'editor | reels (solo cuando la puerta de entrada lo indique)' } }, required: ['skill'] },
   },
   {
     name: 'visualpro_guia',
     description: 'Lee una guía de una skill de Visual PRO (p. ej. reference/carruseles.md) tal y como aparece en las instrucciones.',
-    inputSchema: { type: 'object', properties: { skill: { type: 'string' }, ruta: { type: 'string', description: 'Ruta de la guía dentro de la skill' } }, required: ['skill', 'ruta'] },
+    inputSchema: { type: 'object', properties: { skill: { type: 'string' }, modulo: { type: 'string', description: 'El mismo módulo con el que abriste la skill' }, ruta: { type: 'string', description: 'Ruta de la guía dentro del módulo' } }, required: ['skill', 'ruta'] },
   },
   {
     name: 'visualpro_estado',
@@ -123,13 +124,13 @@ async function ejecutar(nombre, a = {}) {
     }
   }
   if (nombre === 'visualpro_abrir') {
-    const r = await llamar('/v1/abrir', { skill: a.skill });
-    const m = await prepararMotor(a.skill, r.motor);
+    const r = await llamar('/v1/abrir', { skill: a.skill, modulo: a.modulo });
+    const m = await prepararMotor(a.skill, r.motor, r.prefijo || '');
     const instr = r.instrucciones.split('{{MOTOR}}').join(m.dir).split('{{ESTILOS}}').join(m.estilos);
     return texto(instr + (m.nuevos ? `\n\n_(Motor actualizado: ${m.nuevos} archivos.)_` : ''));
   }
   if (nombre === 'visualpro_guia') {
-    const r = await llamar('/v1/guia', { skill: a.skill, ruta: a.ruta });
+    const r = await llamar('/v1/guia', { skill: a.skill, modulo: a.modulo, ruta: a.ruta });
     const dir = path.join(MOTOR, a.skill), est = path.join(ESTILOS, a.skill);
     return texto(r.texto.split('{{MOTOR}}').join(dir).split('{{ESTILOS}}').join(est));
   }
