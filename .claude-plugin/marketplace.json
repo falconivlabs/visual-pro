@@ -1,1 +1,11 @@
-{"name":"visual-pro","owner":{"name":"Falconi.vlabs"},"plugins":[{"name":"visual-pro","source":"./plugin/visual-pro","description":"Visual PRO para alumnos (requiere clave de licencia)."}]}
+{
+  "name": "visual-pro",
+  "owner": { "name": "Falconi.vlabs" },
+  "plugins": [
+    {
+      "name": "visual-pro",
+      "source": "./plugin/visual-pro",
+      "description": "Visual Pro Editor para alumnos (requiere clave de licencia)."
+    }
+  ]
+}
