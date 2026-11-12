@@ -1,9 +1,9 @@
 ---
 name: visual-pro
-description: "Visual PRO: la skill completa de Falconi para crear y editar vídeo con Claude. Motion graphics y vídeos de producto, reels con presentador (corte automático de silencios y muletillas, reencuadre, zooms, subtítulos, efectos de sonido, música), copiar el estilo de cualquier referencia fotograma a fotograma, carruseles animados de Instagram (4:5), storyboard con zona segura, exportación EDITABLE a After Effects, 3 ganchos, portada, formatos 4:5/1:1/16:9, insertos con IA (Higgsfield, Kling, Freepik, ElevenLabs), y una biblioteca de estilos PROPIA que empieza vacía y crece con cada referencia. Úsala para «monta mi bruto», «vamos con otro estilo, referencia NN», «hazme un carrusel sobre…», «pásalo a After Effects», «anima esto», «hazme un vídeo de producto», «arregla el render» o cualquier tarea de edición o animación de vídeo."
+description: "Visual Pro Editor: la skill completa de Falconi para crear y editar vídeo con Claude. Motion graphics y vídeos de producto, reels con presentador (corte automático de silencios y muletillas, reencuadre, zooms, subtítulos, efectos de sonido, música), copiar el estilo de cualquier referencia fotograma a fotograma, carruseles animados de Instagram (4:5), storyboard con zona segura, exportación EDITABLE a After Effects, 3 ganchos, portada, formatos 4:5/1:1/16:9, insertos con IA (Higgsfield, Kling, Freepik, ElevenLabs), y una biblioteca de estilos PROPIA que empieza vacía y crece con cada referencia. Úsala para «monta mi bruto», «vamos con otro estilo, referencia NN», «hazme un carrusel sobre…», «pásalo a After Effects», «anima esto», «hazme un vídeo de producto», «arregla el render» o cualquier tarea de edición o animación de vídeo."
 ---
 
-# Visual PRO
+# Visual Pro Editor
 
 Esta skill es material protegido de Visual PRO: sus instrucciones viven en el servidor de Visual PRO y solo se entregan a alumnos con licencia.
 
