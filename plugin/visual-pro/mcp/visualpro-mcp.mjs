@@ -6,6 +6,7 @@ import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import readline from 'node:readline';
+import { execFileSync } from 'node:child_process';
 
 const HOME = process.env.VISUALPRO_HOME || path.join(os.homedir(), 'VisualPRO');
 const CONFIG = path.join(HOME, 'config.json');
@@ -21,10 +22,25 @@ function guardarConfig(c) {
   fs.mkdirSync(HOME, { recursive: true });
   fs.writeFileSync(CONFIG, JSON.stringify(c, null, 2), { mode: 0o600 });
 }
+// Identificador del ordenador: sale del propio equipo (no de un archivo copiable).
+function idMaquina() {
+  try {
+    if (process.platform === 'darwin') {
+      const o = execFileSync('ioreg', ['-rd1', '-c', 'IOPlatformExpertDevice'], { encoding: 'utf8', timeout: 5000 });
+      const m = o.match(/"IOPlatformUUID" = "([^"]+)"/); if (m) return m[1];
+    } else if (process.platform === 'win32') {
+      const o = execFileSync('reg', ['query', 'HKLM\\SOFTWARE\\Microsoft\\Cryptography', '/v', 'MachineGuid'], { encoding: 'utf8', timeout: 5000 });
+      const m = o.match(/MachineGuid\s+REG_SZ\s+(\S+)/); if (m) return m[1];
+    } else {
+      for (const p of ['/etc/machine-id', '/var/lib/dbus/machine-id']) if (fs.existsSync(p)) return fs.readFileSync(p, 'utf8').trim();
+    }
+  } catch { /* se usa el respaldo */ }
+  return null;
+}
 function equipoId(c) {
-  if (c.equipo) return c.equipo;
-  c.equipo = crypto.randomUUID();
-  guardarConfig(c);
+  const hw = idMaquina();
+  if (hw) return 'hw-' + crypto.createHash('sha256').update('visualpro:' + hw).digest('hex').slice(0, 32);
+  if (!c.equipo) { c.equipo = 'rnd-' + crypto.randomUUID(); guardarConfig(c); } // respaldo si no se puede leer el equipo
   return c.equipo;
 }
 const servidor = (c) => (c.servidor || SERVIDOR_POR_DEFECTO).replace(/\/$/, '');
