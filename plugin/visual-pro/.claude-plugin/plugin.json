@@ -1,1 +1,6 @@
-{"name":"visual-pro","version":"1.0.0","description":"Visual PRO para alumnos: Reels PRO, Visual Pro Editor, vídeos explicativos y explicativos 3D. Requiere la clave de licencia que te dio Falconi.","author":{"name":"Falconi.vlabs"}}
+{
+  "name": "visual-pro",
+  "version": "1.0.0",
+  "description": "Visual Pro Editor para alumnos: edición y animación de vídeo, reels, carruseles y referencias, todo en una sola skill. Requiere la clave de licencia que te dio Falconi.",
+  "author": { "name": "Falconi.vlabs" }
+}
