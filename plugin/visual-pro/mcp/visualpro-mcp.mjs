@@ -16,7 +16,7 @@ const SERVIDOR_POR_DEFECTO = process.env.VISUALPRO_SERVER || 'https://visual-pro
 
 // ---------- configuración ----------
 function leerConfig() {
-  try { return JSON.parse(fs.readFileSync(CONFIG, 'utf8')); } catch { return {}; }
+  try { return JSON.parse(fs.readFileSync(CONFIG, 'utf8').replace(/^\uFEFF/, '')); } catch { return {}; }
 }
 function guardarConfig(c) {
   fs.mkdirSync(HOME, { recursive: true });
