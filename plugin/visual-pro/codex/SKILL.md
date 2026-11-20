@@ -1,5 +1,5 @@
 ---
-name: visual-pro-editor
+name: visual-pro
 description: "Visual Pro Editor: la skill completa de Falconi para crear y editar vídeo con Codex. Motion graphics y vídeos de producto, reels con presentador (corte automático de silencios y muletillas, reencuadre, zooms, subtítulos, efectos de sonido, música), copiar el estilo de cualquier referencia fotograma a fotograma, carruseles animados de Instagram (4:5), storyboard con zona segura, exportación EDITABLE a After Effects, 3 ganchos, portada, formatos 4:5/1:1/16:9, insertos con IA, y una biblioteca de estilos PROPIA que crece con cada referencia. Úsala para «monta mi bruto», «vamos con otro estilo, referencia NN», «hazme un carrusel sobre…», «pásalo a After Effects», «anima esto», «hazme un vídeo de producto», «arregla el render» o cualquier tarea de edición o animación de vídeo."
 ---
 
