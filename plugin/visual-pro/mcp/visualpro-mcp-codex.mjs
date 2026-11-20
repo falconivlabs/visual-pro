@@ -13,7 +13,7 @@ const CONFIG = path.join(HOME, 'config.json');
 const CLIENTE = 'codex'; // este archivo es el cliente de Codex; el de Claude es visualpro-mcp.mjs y no se toca
 const MOTOR = path.join(HOME, CLIENTE ? 'motor-codex' : 'motor'); // cada cliente con su motor: si a uno le niegan el hueco, no se borra el del otro
 const ESTILOS = path.join(HOME, 'estilos');
-const SERVIDOR_POR_DEFECTO = process.env.VISUALPRO_SERVER || '__SERVIDOR__';
+const SERVIDOR_POR_DEFECTO = process.env.VISUALPRO_SERVER || 'https://visual-pro.falconi-vlabs.workers.dev';
 
 // ---------- configuración ----------
 function leerConfig() {
