@@ -1,6 +1,6 @@
 {
   "name": "visual-pro",
-  "version": "1.2.4",
-  "description": "Visual Pro Editor para alumnos: edición y animación de vídeo, reels, carruseles y referencias, todo en una sola skill. Requiere la clave de licencia que te dio Falconi.",
+  "version": "1.2.5",
+  "description": "Visual PRO para alumnos: Visual Pro Editor (edición y animación de vídeo, reels, carruseles, referencias) y módulos de prompts para Seedance 2.5, WAN 3.0, Magi 2 y los que se añadan. Requiere la clave de licencia que te dio Falconi.",
   "author": { "name": "Falconi.vlabs" }
 }

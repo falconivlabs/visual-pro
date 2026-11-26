@@ -119,7 +119,7 @@ const TOOLS = [
   {
     name: 'visualpro_abrir',
     description: 'Abre una skill de Visual PRO: devuelve sus instrucciones (protegidas, solo con licencia) y deja listo el motor en este equipo. Llámala SIEMPRE al empezar una tarea de Visual PRO. La primera vez, sin módulo, devuelve la puerta de entrada que dice qué módulo abrir.',
-    inputSchema: { type: 'object', properties: { skill: { type: 'string', description: 'visual-pro' }, modulo: { type: 'string', description: 'editor | reels (solo cuando la puerta de entrada lo indique)' } }, required: ['skill'] },
+    inputSchema: { type: 'object', properties: { skill: { type: 'string', description: 'visual-pro' }, modulo: { type: 'string', description: 'El módulo que indique la puerta de entrada (p. ej. reels, editor, seedance, wan, magi)' } }, required: ['skill'] },
   },
   {
     name: 'visualpro_guia',

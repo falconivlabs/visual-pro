@@ -5,7 +5,7 @@
     {
       "name": "visual-pro",
       "source": "./plugin/visual-pro",
-      "description": "Visual Pro Editor para alumnos (requiere clave de licencia)."
+      "description": "Visual PRO para alumnos: Visual Pro Editor y módulos de prompts (requiere clave de licencia)."
     }
   ]
 }
