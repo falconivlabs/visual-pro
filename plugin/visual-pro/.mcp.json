@@ -1,1 +1,8 @@
-{"mcpServers":{"visual-pro":{"command":"node","args":["${CLAUDE_PLUGIN_ROOT}/mcp/visualpro-mcp.mjs"]}}}
+{
+  "mcpServers": {
+    "visual-pro": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp/visualpro-mcp.mjs"]
+    }
+  }
+}
